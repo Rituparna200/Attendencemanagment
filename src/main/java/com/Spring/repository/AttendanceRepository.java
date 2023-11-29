@@ -7,19 +7,19 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.Spring.entity.AttendanceDetail;
+import com.Spring.entity.Attendance;
 
 @Repository
-public interface AttendanceRepository extends CrudRepository<AttendanceDetail, Long> {
+public interface AttendanceRepository extends CrudRepository<Attendance, Long> {
 
-	AttendanceDetail[] findByEmployeeId(String employeeid);
+	Attendance[] findByEmployeeId(String employeeid);
 	
 	 
-	AttendanceDetail[] findByDepartmentId(String departmentid);
+	Attendance[] findByDepartmentId(String departmentid);
 	
-	AttendanceDetail findBydate(String month);
+	Attendance findBydate(String month);
 	
-	AttendanceDetail findByEmployeeIdAndDepartmentId(String employeeid,String departmentid);
+	Attendance findByEmployeeIdAndDepartmentId(String employeeid,String departmentid);
 	
 	
 	Long countByEmployeeIdAndDepartmentId(String employeeid,String departmentid);
@@ -42,7 +42,7 @@ public interface AttendanceRepository extends CrudRepository<AttendanceDetail, L
 	@Transactional
 	void deleteByEmployeeId(String employeeid);
 
-	AttendanceDetail findByEmployeeIdAndDate(String employeeid, String date);
+	Attendance findByEmployeeIdAndDate(String employeeid, String date);
 
 	@Query(value = "SELECT employeeId,count(available) as total FROM attendancedetail where available=1 and department_id = ?1 and month = ?2 and shift = ?3 group by employee_id order by count(available) desc")
 	Object[] findByAttencountOrderByAttencountAsc(String departmentid,String month,String shift);

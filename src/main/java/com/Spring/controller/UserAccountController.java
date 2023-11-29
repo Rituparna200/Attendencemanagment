@@ -26,30 +26,7 @@ public class UserAccountController {
     @Autowired
     UserAccountService userAccountService;
 
-//    @Autowired
-//    UserAccountRepository us;
-//    
-//    
-//    
-//    
-//    
-//    @PostMapping("/add")
-//    @CrossOrigin
-//    public ResponseEntity<?> saveDealData(@RequestBody UserAccount useraccount) {
-//    HttpHeaders headers = new HttpHeaders();
-//
-//    try {
-//    us.save(useraccount);
-//    //headers.add("Message", "true");	
-//    return ResponseEntity.status(HttpStatus.CREATED).headers(headers).body(useraccount);
-//    }
-//    catch(Exception e) {
-//
-//    }
-//    headers.add("Message", "false");
-//    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).headers(headers).body("Failed to add the user");
-//    }
-//    
+
     
     
 
@@ -65,7 +42,7 @@ public class UserAccountController {
     }catch (Exception e) {
 		// TODO: handle exception
     	headers.add("Message", "false");
-    	return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).headers(headers).body("Failed to add the user");
+    	return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).headers(headers).body("no user found");
 	}
     }
     

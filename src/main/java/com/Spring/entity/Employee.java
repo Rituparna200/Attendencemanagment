@@ -1,5 +1,7 @@
 package com.Spring.entity;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,14 +10,14 @@ import javax.persistence.Id;
 
 
 @Entity(name="employeedetail")
-public class EmployeeDetail {
+public class Employee {
 		
 		@Id
 		@Column(name = "employeeId")
 		String employeeId;
 		
 		@Column(name = "dob")
-		long dob;
+		Date dob;
 		
 		@Column(name = "gender")
 		String gender;
@@ -65,11 +67,11 @@ public class EmployeeDetail {
 			this.employeeId = employeeId;
 		}
 
-		public long getDob() {
+		public Date getDob() {
 			return dob;
 		}
 
-		public void setDob(long dob) {
+		public void setDob(Date dob) {
 			this.dob = dob;
 		}
 

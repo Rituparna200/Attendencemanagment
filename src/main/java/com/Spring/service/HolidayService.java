@@ -1,12 +1,13 @@
 package com.Spring.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-import com.Spring.entity.HolidayDetail;
+import com.Spring.entity.Holiday;
 import com.Spring.repository.HolidayRepository;
 
 @Service("holidayservice")
@@ -20,8 +21,8 @@ public class HolidayService {
 		this.holidayrepository = holidayrepository;
 	}
 
-	public String addUser(HolidayDetail holidaydetail) {
-		HolidayDetail holidaydet = (HolidayDetail)holidayrepository.findByDate(holidaydetail.getDate());
+	public String addUser(Holiday holidaydetail) {
+		Holiday holidaydet = (Holiday)holidayrepository.findByDate(holidaydetail.getDate());
 		if(holidaydet==null) {
 		 System.out.println("HELLO"+holidaydetail.getDate()+"    "+holidaydetail.getReason());
 	        holidayrepository.save(holidaydetail);
@@ -30,8 +31,8 @@ public class HolidayService {
 		return "DATA ALREADY THERE";
 	}
 	 
-	    public List<HolidayDetail> findAllHoliday() {
-	    	List<HolidayDetail> holidaylist = (List<HolidayDetail>) holidayrepository.findAll();
+	    public List<Holiday> findAllHoliday() {
+	    	List<Holiday> holidaylist = (List<Holiday>) holidayrepository.findAll();
 	        if (holidaylist != null) {
 	           return holidaylist;
 	        }
@@ -39,8 +40,8 @@ public class HolidayService {
 	    }
 	 	
 
-	    public HolidayDetail findByDate(long date) {
-	    	HolidayDetail holidaylist = (HolidayDetail) holidayrepository.findByDate(date);
+	    public Holiday findByDate(Date date) {
+	    	Holiday holidaylist = (Holiday) holidayrepository.findByDate(date);
 
 	        if (holidaylist != null) {
 	            return holidaylist;

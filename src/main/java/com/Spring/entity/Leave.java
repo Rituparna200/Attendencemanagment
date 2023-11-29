@@ -2,6 +2,8 @@ package com.Spring.entity;
 
 
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity(name = "leavedetail")
-public class LeaveDetail {
+public class Leave {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,15 +27,15 @@ public class LeaveDetail {
 
 
 	@Column(name = "date")
-	String date;
+	Date date;
 
 	@Column(name = "fromdate")
-	String fromdate;
+	Date fromdate;
 
 	
 
 	@Column(name = "todate")
-	String todate;
+	Date todate;
 
 	
 	@Column(name = "leavetype")
@@ -58,11 +60,11 @@ public class LeaveDetail {
 	public void setDeptId(String deptId) {
 		this.deptId = deptId;
 	}
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 	
@@ -89,19 +91,19 @@ public class LeaveDetail {
 	public void setLeavetype(String leavetype) {
 		this.leavetype = leavetype;
 	}
-	public String getFromdate() {
+	public Date getFromdate() {
 		return fromdate;
 	}
 
-	public void setFromdate(String fromdate) {
+	public void setFromdate(Date fromdate) {
 		this.fromdate = fromdate;
 	}
 
-	public String getTodate() {
+	public Date getTodate() {
 		return todate;
 	}
 
-	public void setTodate(String todate) {
+	public void setTodate(Date todate) {
 		this.todate = todate;
 	}
 

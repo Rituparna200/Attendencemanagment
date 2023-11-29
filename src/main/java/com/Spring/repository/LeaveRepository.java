@@ -4,18 +4,18 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.Spring.entity.LeaveDetail;
+import com.Spring.entity.Leave;
 
 
 @Repository
-public interface LeaveRepository extends CrudRepository<LeaveDetail, Long> {
+public interface LeaveRepository extends CrudRepository<Leave, Long> {
 
    
-    LeaveDetail[] findByEmployeeId(String employeeId);
+    Leave[] findByEmployeeId(String employeeId);
 
-    LeaveDetail findByEmployeeIdAndFromdate(String employeeId,String fromdate);
+    Leave findByEmployeeIdAndFromdate(String employeeId,String fromdate);
     
-    LeaveDetail[] findByDeptId(String deptId);
+    Leave[] findByDeptId(String deptId);
     
     
     @Transactional

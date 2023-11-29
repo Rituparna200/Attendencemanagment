@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.Spring.entity.DepartmentDetail;
+import com.Spring.entity.Department;
 import com.Spring.service.DepartmentService;
 
 @Controller
@@ -26,7 +26,7 @@ public class DepartmentController {
 		@PostMapping(path="/adddepartment")
 		@CrossOrigin
 		@ResponseBody
-		public ResponseEntity<?> adddepartment(@RequestBody DepartmentDetail departmentdetail) {	
+		public ResponseEntity<?> adddepartment(@RequestBody Department departmentdetail) {	
 			 HttpHeaders headers = new HttpHeaders();
 		        
 		        try {   	

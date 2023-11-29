@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Spring.service.AttendanceService;
-import com.Spring.entity.AttendanceDetail;
+import com.Spring.entity.Attendance;
 
 
 
@@ -30,7 +30,7 @@ public class AttendanceController {
 	 @PostMapping(path = "/addatten")
 	 @CrossOrigin
 	 @ResponseBody
-	 public ResponseEntity<?> addUser(@RequestBody AttendanceDetail attendancedetail) {
+	 public ResponseEntity<?> addUser(@RequestBody Attendance attendancedetail) {
 		 HttpHeaders headers = new HttpHeaders();
 	        
 	        try {   	
@@ -217,7 +217,7 @@ public class AttendanceController {
 	 @GetMapping(path = "/findbybothidatten")
 	 @CrossOrigin
 	    @ResponseBody
-	    public AttendanceDetail findByName(@RequestParam String employeeid,@RequestParam String departmentid) {
+	    public Attendance findByName(@RequestParam String employeeid,@RequestParam String departmentid) {
 		  	return attendanceservice.findByName(employeeid, departmentid);
 	  }
 	 

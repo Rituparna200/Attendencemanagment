@@ -4,14 +4,14 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.Spring.entity.EmployeeDetail;
+import com.Spring.entity.Employee;
 @Repository
-public interface EmployeeRepository extends CrudRepository<EmployeeDetail, Long> {
+public interface EmployeeRepository extends CrudRepository<Employee, Long> {
    
-    EmployeeDetail findByEmployeeId(String employeeid);
-    EmployeeDetail findByEmployeeIdAndShift(String employeeid,String shift);
+    Employee findByEmployeeId(String employeeid);
+    Employee findByEmployeeIdAndShift(String employeeid,String shift);
 
-    EmployeeDetail[] findByDepartment(String department);
+    Employee[] findByDepartment(String department);
     @Transactional
     void deleteByEmployeeId(String employeeId);
 

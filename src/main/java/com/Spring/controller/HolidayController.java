@@ -1,5 +1,6 @@
 package com.Spring.controller;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.Spring.entity.HolidayDetail;
+import com.Spring.entity.Holiday;
 import com.Spring.service.HolidayService;
 
 @RestController
@@ -27,7 +28,7 @@ public class HolidayController {
 	 @PostMapping(path = "/addholiday")
 	 @CrossOrigin
 	 @ResponseBody
-	 public ResponseEntity<String> addUser(@RequestBody HolidayDetail holidaydetail) {
+	 public ResponseEntity<String> addUser(@RequestBody Holiday holidaydetail) {
 		 HttpHeaders headers = new HttpHeaders();
 	    	
 		    try {
@@ -62,7 +63,7 @@ public class HolidayController {
 	 @GetMapping(path = "/findbydateholiday")
 	 @CrossOrigin
 	    @ResponseBody
-	    public ResponseEntity<?> findByDate(@RequestParam long date) {
+	    public ResponseEntity<?> findByDate(@RequestParam Date date) {
 		 HttpHeaders headers = new HttpHeaders();
 	    	
 		    try {

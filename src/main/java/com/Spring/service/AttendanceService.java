@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-import com.Spring.entity.AttendanceDetail;
+import com.Spring.entity.Attendance;
+import com.Spring.exception.AttendanceNotFoundException;
+import com.Spring.exception.AttendanceUpdateException;
 import com.Spring.repository.AttendanceRepository;
+import com.Spring.service.exception.ExceptionHandler;
 
 
 @Service("attendanceservice")
@@ -22,7 +25,7 @@ public class AttendanceService {
 		this.attendancerepository = attendancerepository;
 	}
 
-	public String addUser(AttendanceDetail attendancedetail) {
+	public String addUser(Attendance attendancedetail) {
     	
     		attendancerepository.save(attendancedetail);
 	        return "User account has been added, Employee ID = " + attendancedetail.getEmployeeId();
@@ -30,17 +33,19 @@ public class AttendanceService {
 
 	    }
 	 
-	    public List<AttendanceDetail> findAllUser() {
-	        List<AttendanceDetail> attendanceList = (List<AttendanceDetail>) attendancerepository.findAll();
+	public List<Attendance> findAllUser() {
+        try {
+            List<Attendance> attendanceList = (List<Attendance>) attendancerepository.findAll();
+            return attendanceList;
+        } catch (Exception e) {
+            ExceptionHandler.logException(e);
+            throw new RuntimeException("Failed to retrieve all users");
+        }
+    }
 
-	        if (attendanceList != null) {
-	        	return attendanceList;
-	        }
-	        return null;
-	    }
 
-	    public AttendanceDetail[] findByempid(String employeeid) {
-		AttendanceDetail[] attendanceList =  attendancerepository.findByEmployeeId(employeeid);
+	    public Attendance[] findByempid(String employeeid) {
+		Attendance[] attendanceList =  attendancerepository.findByEmployeeId(employeeid);
 
 	        if (attendanceList != null) {
 	            return attendanceList;
@@ -77,8 +82,8 @@ public class AttendanceService {
 		        
 		  }
 	    
-	    public AttendanceDetail findBydate(String month) {
-			AttendanceDetail attendanceList = (AttendanceDetail) attendancerepository.findBydate(month);
+	    public Attendance findBydate(String month) {
+			Attendance attendanceList = (Attendance) attendancerepository.findBydate(month);
 
 		        if (attendanceList != null) {
 		            return attendanceList;
@@ -86,16 +91,16 @@ public class AttendanceService {
 		        return null;
 		  }
 	    
-	    public AttendanceDetail[] findBydeptid(String departmentid) {
-		   AttendanceDetail[] attendanceList = (AttendanceDetail[]) attendancerepository.findByDepartmentId(departmentid);
+	    public Attendance[] findBydeptid(String departmentid) {
+		   Attendance[] attendanceList = (Attendance[]) attendancerepository.findByDepartmentId(departmentid);
 	        if (attendanceList != null) {
 	        		return attendanceList;
 	        }
 	        return null;
 	  }
 
-	    public AttendanceDetail findByName(String employeeid,String departmentid) {
-		 AttendanceDetail attendanceList = (AttendanceDetail) attendancerepository.findByEmployeeIdAndDepartmentId(employeeid, departmentid);
+	    public Attendance findByName(String employeeid,String departmentid) {
+		 Attendance attendanceList = (Attendance) attendancerepository.findByEmployeeIdAndDepartmentId(employeeid, departmentid);
 
 	        if (attendanceList != null) {
 	           return attendanceList;
@@ -127,17 +132,21 @@ public class AttendanceService {
 	    
 	    
 	    
-	    public String updateUser(String employeeid,Boolean available,String date) {
-	    	AttendanceDetail attendanceList = (AttendanceDetail) attendancerepository.findByEmployeeIdAndDate(employeeid,date);
-	    	if (attendanceList != null) {
-	        	
-	        	attendanceList.setAvailable(available);
-	        	attendancerepository.save(attendanceList);
-	        	return "User updated Successfully";
-	        }
-	        return "User update Failed";
-	    }
+	    public String updateUser(String employeeid, Boolean available, String date) {
+	        Attendance attendanceList = attendancerepository.findByEmployeeIdAndDate(employeeid, date);
 
+	        if (attendanceList != null) {
+	            try {
+	                attendanceList.setAvailable(available);
+	                attendancerepository.save(attendanceList);
+	                return "User updated Successfully";
+	            } catch (Exception e) {
+	                throw new AttendanceUpdateException("Failed to update user attendance");
+	            }
+	        } else {
+	            throw new AttendanceNotFoundException("User not found for update");
+	        }
+	    }
 
 	    public String deleteByEmpid(String employeeid) {
 	    	attendancerepository.deleteByEmployeeId(employeeid);

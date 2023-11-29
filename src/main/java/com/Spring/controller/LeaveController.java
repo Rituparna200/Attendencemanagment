@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.Spring.entity.LeaveDetail;
+import com.Spring.entity.Leave;
 import com.Spring.service.LeaveService;
 
 @RestController
@@ -28,7 +28,7 @@ public class LeaveController {
     @PostMapping(path = "/adduserleave")
     @CrossOrigin
     @ResponseBody
-    public ResponseEntity<?> addUser(@RequestBody LeaveDetail leavedetail) {
+    public ResponseEntity<?> addUser(@RequestBody Leave leavedetail) {
     	HttpHeaders headers = new HttpHeaders();
     	
 	    try {

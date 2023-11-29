@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.Spring.entity.EmployeeDetail;
+import com.Spring.entity.Employee;
 import com.Spring.repository.EmployeeRepository;
 
 @Service("EmployeeService")
@@ -15,10 +15,10 @@ public class EmployeeService {
 	EmployeeRepository employeerepository;
 	
 
-	 public String addUser(EmployeeDetail employeedetail) {
+	 public String addUser(Employee employeedetail) {
      	System.out.println("PLSS1"+employeedetail.getShift());
 
-		 	EmployeeDetail empdetail = (EmployeeDetail)employeerepository.findByEmployeeId(employeedetail.getEmployeeId());
+		 	Employee empdetail = (Employee)employeerepository.findByEmployeeId(employeedetail.getEmployeeId());
 	        if(empdetail==null) {
 	        	System.out.println("PLSS"+employeedetail.getShift());
 		 	employeerepository.save(employeedetail);
@@ -27,8 +27,8 @@ public class EmployeeService {
 	        return null;
 	    }
 	 
-	    public List<EmployeeDetail> findAllUser() {
-	    	List<EmployeeDetail> employeeList = (List<EmployeeDetail>) employeerepository.findAll();
+	    public List<Employee> findAllUser() {
+	    	List<Employee> employeeList = (List<Employee>) employeerepository.findAll();
 
 	        if (employeeList != null) {
 	        	return employeeList;
@@ -38,7 +38,7 @@ public class EmployeeService {
 
 	    
 	    public String findByempdept(String employeeid) {
-			 EmployeeDetail employee = (EmployeeDetail) employeerepository.findByEmployeeId(employeeid);
+			 Employee employee = (Employee) employeerepository.findByEmployeeId(employeeid);
 
 			  if (employee != null) {
 		           return employee.getDepartment();
@@ -47,8 +47,8 @@ public class EmployeeService {
 		        return null;
 		  }
 	    
-	    public EmployeeDetail[] findBydeptemp(String department) {
-			 EmployeeDetail[] employee = (EmployeeDetail[]) employeerepository.findByDepartment(department);
+	    public Employee[] findBydeptemp(String department) {
+			 Employee[] employee = (Employee[]) employeerepository.findByDepartment(department);
 
 			  if (employee != null) {
 		           return employee;
@@ -57,8 +57,8 @@ public class EmployeeService {
 		        return null;
 		  }
 	    
-	    public EmployeeDetail findByempid(String employeeid,String shift) {
-		 EmployeeDetail employee = (EmployeeDetail) employeerepository.findByEmployeeIdAndShift(employeeid,shift);
+	    public Employee findByempid(String employeeid,String shift) {
+		 Employee employee = (Employee) employeerepository.findByEmployeeIdAndShift(employeeid,shift);
 
 		  if (employee != null) {
 	           return employee;

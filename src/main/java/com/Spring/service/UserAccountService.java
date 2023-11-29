@@ -14,7 +14,7 @@ import com.Spring.repository.UserAccountRepository;
 @ComponentScan("BCryptPasswordEncoder")
 public class UserAccountService {
 
-	//private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -22,9 +22,9 @@ public class UserAccountService {
     private UserAccountRepository userAccountRepository;
 	
 	@Autowired
-    public UserAccountService(UserAccountRepository userAccountRepository) {//,BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public UserAccountService(UserAccountRepository userAccountRepository) {
         this.userAccountRepository = userAccountRepository; 
-       // this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+       
     }
 
    

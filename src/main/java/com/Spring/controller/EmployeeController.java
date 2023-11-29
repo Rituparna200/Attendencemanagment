@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.Spring.entity.EmployeeDetail;
+import com.Spring.entity.Employee;
 import com.Spring.service.EmployeeService;
 
 @Controller
@@ -28,7 +28,7 @@ public class EmployeeController {
 	@PostMapping(path="/addemployee")
 	@CrossOrigin
 	@ResponseBody
-	 public ResponseEntity<?> addUser(@RequestBody EmployeeDetail employeedetail) {
+	 public ResponseEntity<?> addUser(@RequestBody Employee employeedetail) {
 
 		HttpHeaders headers = new HttpHeaders();
         

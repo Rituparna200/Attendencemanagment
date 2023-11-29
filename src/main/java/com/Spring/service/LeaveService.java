@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.Spring.entity.LeaveDetail;
+import com.Spring.entity.Leave;
 import com.Spring.repository.LeaveRepository;
 
 @Service("LeaveService")
@@ -20,7 +20,7 @@ public class LeaveService {
     }
 
    
-    public String addLeave(LeaveDetail leavedet) {
+    public String addLeave(Leave leavedet) {
     	
     		LeaveRepository.save(leavedet);
     		return "Leave has been added, user name = " + leavedet.getEmployeeId();
@@ -28,8 +28,8 @@ public class LeaveService {
        
     }
     
-    public List<LeaveDetail> findAllUser() {
-        List<LeaveDetail> leaveList = (List<LeaveDetail>) LeaveRepository.findAll();
+    public List<Leave> findAllUser() {
+        List<Leave> leaveList = (List<Leave>) LeaveRepository.findAll();
         if (leaveList != null) {
             return leaveList;
         }
@@ -38,7 +38,7 @@ public class LeaveService {
 
     public String updateLeave(String employeeId,String fromdate,String leavetype) {
     	
-    	LeaveDetail l = LeaveRepository.findByEmployeeIdAndFromdate(employeeId, fromdate);
+    	Leave l = LeaveRepository.findByEmployeeIdAndFromdate(employeeId, fromdate);
     	if(l!=null) {
     		l.setLeavetype(leavetype);
 		LeaveRepository.save(l);
@@ -49,8 +49,8 @@ public class LeaveService {
    
 }
     
-    public LeaveDetail[] findByEmployeeId(String employeeId) {
-        LeaveDetail[] leaveList = LeaveRepository.findByEmployeeId(employeeId);
+    public Leave[] findByEmployeeId(String employeeId) {
+        Leave[] leaveList = LeaveRepository.findByEmployeeId(employeeId);
         if (leaveList != null) {
            return leaveList;
         }
@@ -58,9 +58,9 @@ public class LeaveService {
     }
 
 
-    public LeaveDetail[] findByDepartmentId(String deptid) {
+    public Leave[] findByDepartmentId(String deptid) {
     	//System.out.println("HELLO"+deptid);
-    	LeaveDetail[] leaveList = LeaveRepository.findByDeptId(deptid);
+    	Leave[] leaveList = LeaveRepository.findByDeptId(deptid);
         if (leaveList != null) {
            return leaveList;
         }

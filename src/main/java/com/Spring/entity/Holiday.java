@@ -1,5 +1,7 @@
 package com.Spring.entity;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,20 +10,20 @@ import javax.persistence.Id;
 
 
 @Entity(name="holidaydetail")
-public class HolidayDetail {
+public class Holiday {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	
 		@Column(name = "date")
-		long date;
+		Date date;
 		
 		String reason;
 		
-		public long getDate() {
+		public Date getDate() {
 			return date;
 		}
-		public void setDate(long date) {
+		public void setDate(Date date) {
 			
 			this.date = date;
 		}
